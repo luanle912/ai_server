@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from flask import jsonify
 import pandas as pd
 
-client = MongoClient('mongodb+srv://lvtn:lvtn123lvtn@cluster0.f5i6j.mongodb.net/lvtn?retryWrites=true&w=majority')
+client = MongoClient('')
 db = client['lvtn']
 
 def get_nearest_jobs(num_jobs=1000):
