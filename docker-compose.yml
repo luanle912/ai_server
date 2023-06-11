@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  data-portal:
+    image: hpccbk/ai-scheduling-irls:${bamboo_project_VERSION}
+    networks:
+      - ai-scheduling
+      - databases
+    ports:
+      - '${PORT}:5000'
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.labels.ENV == ${ENV}
+
+networks:
+  ai-scheduling:
+    external:
+      name: ${NETWORK}
+  databases:
+    external:
+      name: ${DB_NETWORK}
